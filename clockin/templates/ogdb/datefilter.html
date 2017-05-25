@@ -1,0 +1,258 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+div.container {
+    display: inline-block;
+    position:relative;
+    overflow:auto;
+
+}
+table {
+    display: table;
+    position:relative;
+    border-collapse: separate;
+    border-spacing: 20px;
+    border-color: gray;
+}
+</style>
+<head>
+ <script type="text/javascript" SRC="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
+
+<!--
+
+Template 2082 Pure Mix
+
+http://www.tooplate.com/view/2082-pure-mix
+
+-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Site title
+   ================================================== -->
+    <title>Paradyme Management Database</title>
+
+    <!-- Bootstrap CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Animate CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+
+    <!-- Font Icons CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+    <!-- Main CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google web font 
+   ================================================== -->   
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+
+</head>
+<body>
+
+
+<!-- Preloader section
+================================================== -->
+<div class="preloader">
+
+    <div class="sk-spinner sk-spinner-pulse"></div>
+
+</div>
+
+
+<!-- Navigation section
+================================================== -->
+<div class="nav-container">
+   <nav class="nav-inner transparent">
+
+      <div class="navbar">
+         <div class="container">
+            <div class="row">
+
+              <div class="brand">
+                <a href="{% url 'home' %}">Paradyme Management</a>
+              </div>
+
+             
+
+            </div>
+         </div>
+      </div>
+
+   </nav>
+</div>
+
+  <div  style="position: absolute; top: 25px; right: 15px; text-align:right; display:inline-block;">
+      <a href="{% url 'logout' %}"><button type="button" class = "btn btn-default">Log Out</a>
+
+  </div>
+<!-- Header section
+================================================== -->
+<section id="header" class="header-one">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+          <div class="header-thumb">
+              <h1 class="wow fadeIn" data-wow-delay="1.6s">Paradyme Interns Time Sheet</h1>
+          </div>
+            </div>
+
+        </div>
+    </div>      
+</section>
+
+
+<!-- Portfolio section
+================================================== -->
+
+
+
+
+<section id="portfolio">
+    <form method="get">
+    <div class="well">
+      <h4 style="margin-top: 0">Filter Interns</h4>
+      <div class="row">
+        <div class="form-group col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+          {{ filter.form.intern.label_tag }}
+          {% render_field filter.form.intern class="form-control" %}
+        </div>
+        <div class="form-group col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8">
+          {{ filter.form.date_between.label_tag }}
+          {% render_field filter.form.date_between class="form-control" %}
+        </div>
+        
+       
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
+    </div>
+  </form>
+
+    <form action = # method = "POST"> {% csrf_token %}
+
+  <table class="table table-bordered" id = "time">
+    <thead>
+      <tr>
+        <th>Edit</th>
+        <th>Intern</th>
+        <th>Date</th>
+        <th>Time In</th>
+        <th>Time Out</th>
+        <th>Duration (Hours)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in filter.qs %}
+        <tr>
+        <td> 
+                <input type="radio" name="checkbox" id="checkbox[]" 
+value= {{user.id}}   />  
+                </td> 
+          <td>{{ user.intern}}</td>
+          <td>{{ user.date}}</td>
+          <td>{{ user.time_in}}</td>
+          <td>{{ user.time_out}}</td>
+          <td>
+  
+            {{user.duration}}
+            
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No data</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Total Hours (Between Pay Period Parameters)</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id=total_duration>&nbsp;</td>
+
+        </tr>
+        
+    </tbody>
+  </table>
+  <a href="{% url 'add_work' %}" class='btn btn-default'>Add Hours</a>
+
+  <button type = "submit" class = "btn btn-default" name = "mybtn" value = "End Session">Edit</button>
+    </form>
+
+
+  
+
+
+     <script type="text/javascript">  
+
+ //these will hold the totals
+ var total_duration = 0;
+
+ //reference the rows you want to add
+ //this will not include the header row
+ var rows = $("#time tr:gt(0)");
+ rows.children("td:nth-child(5)").each(function() {
+ //each time we add the cell to the total
+ total_duration += parseFloat($(this).html());
+ });
+
+ //then output them to the elements
+ $("#total_duration").html(total_duration);
+ 
+ </script>
+
+</section>
+
+
+
+<!-- Footer section
+================================================== -->
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <p class="wow fadeInUp"  data-wow-delay="0.3s">Paradyme Internship - Summer 2017 Time Sheet  </p>
+
+            </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<!-- Javascript 
+================================================== -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/isotope.js' %}"></script>
+<script src="{% static 'js/imagesloaded.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

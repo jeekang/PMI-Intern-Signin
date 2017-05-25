@@ -1,0 +1,192 @@
+
+
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+div.container {
+    display: inline-block;
+    position:relative;
+    overflow:auto;
+}
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: fixed;
+    top: 30%;
+
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+.form button {
+
+
+  width: 75%;
+  height: 50%;
+  border: 0;
+
+  padding: 15px;
+
+  cursor: pointer;
+
+}
+.divider{
+    width:1px;
+    height:1px;
+    display:inline-block;
+}
+</style>
+<head>
+<!--
+
+Template 2082 Pure Mix
+
+http://www.tooplate.com/view/2082-pure-mix
+
+-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <!-- Site title
+   ================================================== -->
+    <title>Login</title>
+
+    <!-- Bootstrap CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- Animate CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+
+    <!-- Font Icons CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+    <!-- Main CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Google web font 
+   ================================================== -->   
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+
+</head>
+<body>
+
+
+<!-- Preloader section
+================================================== -->
+<div class="preloader">
+
+    <div class="sk-spinner sk-spinner-pulse"></div>
+
+</div>
+
+
+<!-- Navigation section
+================================================== -->
+<div class="nav-container">
+   <nav class="nav-inner transparent">
+
+      <div class="navbar">
+         <div class="container">
+            <div class="row">
+
+              <div class="brand">
+                <a href="{% url 'home' %}">Paradyme Management</a>
+              </div>
+
+             
+
+            </div>
+         </div>
+      </div>
+
+   </nav>
+</div>
+
+
+<!-- Header section
+================================================== -->
+<section id="header" class="header-one">
+    <div class="container">
+
+       <div class="login-page">
+  <div class="form">
+
+{% block content %}
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+ <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+        {{ form.username.label_tag }}
+
+        {{ form.username }}
+
+        {{ form.password.label_tag }}
+
+        {{ form.password }}
+
+        
+        <button>login</button>
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+    {% endblock %}
+  </div>
+</div>
+    </div>      
+</section>
+
+
+<!-- Portfolio section
+================================================== -->
+
+
+
+
+<!-- Footer section
+================================================== -->
+<footer>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12">
+                <p class="wow fadeInUp"  data-wow-delay="0.3s">Paradyme Internship - Summer 2017 Time Sheet</p>
+
+            </div>
+            
+        </div>
+    </div>
+</footer>
+
+
+<!-- Javascript 
+================================================== -->
+<script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/isotope.js' %}"></script>
+<script src="{% static 'js/imagesloaded.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>
