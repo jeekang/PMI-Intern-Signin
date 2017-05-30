@@ -14,7 +14,6 @@ div.container {
 </style>
 <head>
 
- <script type="text/javascript" SRC="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js"></script>
 
 
 <!--
@@ -159,32 +158,6 @@ http://www.tooplate.com/view/2082-pure-mix
     </tbody>
   </table>
 
-   <script type="text/javascript">  
-
- //these will hold the totals
- var ages = 0;
- var weights = 0;
- var benchpresses = 0;
-
- //reference the rows you want to add
- //this will not include the header row
- var rows = $("#data tr:gt(0)");
- rows.children("td:nth-child(2)").each(function() {
- //each time we add the cell to the total
- ages += parseInt($(this).html());
- });
- rows.children("td:nth-child(3)").each(function() {
- weights += parseInt($(this).html());
- });
- rows.children("td:nth-child(4)").each(function() {
- benchpresses += parseInt($(this).html());
- });
-
- //then output them to the elements
- $("#ages").html(ages);
- $("#weights").html(weights);
- $("#benchpresses").html(benchpresses);
- </script>
 
 
 
@@ -201,7 +174,7 @@ http://www.tooplate.com/view/2082-pure-mix
                 <p class="wow fadeInUp"  data-wow-delay="0.3s">Paradyme Internship - Summer 2017 Time Sheet  </p>
 
             </div>
-            
+            <img src= "{% static 'images/paradyme-green.png' %}" style="height:40px;width:184px;" > </img>
         </div>
     </div>
 </footer>
