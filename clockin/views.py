@@ -93,10 +93,14 @@ def clockout(request, work_id):
 		my_date = datetime.date.today()
 
 		delta = datetime.datetime.combine(my_date,obj.time_out) - datetime.datetime.combine(my_date,obj.time_in)
+	
 		totalseconds = delta.total_seconds()
 		hours = totalseconds/3600
-		if hours > 9 or hours < 0:
-			obj.duration = 9
+		if hours > 20:
+			obj.duration = 20
+		elif hours < 0:
+			new_hours = hours+24
+			obj.duration = new_hours 
 		else:
 			obj.duration = hours
 		obj.save()
@@ -146,8 +150,11 @@ def edit_hours(request,work_id):
 		delta = datetime.datetime.combine(my_date,obj.time_out) - datetime.datetime.combine(my_date,obj.time_in)
 		totalseconds = delta.total_seconds()
 		hours = totalseconds/3600
-		if hours > 10 or hours < 0:
-			obj.duration = 0
+		if hours > 20:
+			obj.duration = 20
+		elif hours < 0:
+			new_hours = hours+24
+			obj.duration = new_hours 
 		else:
 			obj.duration = hours
 		obj.save()
