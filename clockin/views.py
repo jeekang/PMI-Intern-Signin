@@ -96,8 +96,8 @@ def clockout(request, work_id):
 	
 		totalseconds = delta.total_seconds()
 		hours = totalseconds/3600
-		if hours > 20:
-			obj.duration = 20
+		if hours > 9:
+			obj.duration = 0
 		elif hours < 0:
 			new_hours = hours+24
 			obj.duration = new_hours 
@@ -150,8 +150,8 @@ def edit_hours(request,work_id):
 		delta = datetime.datetime.combine(my_date,obj.time_out) - datetime.datetime.combine(my_date,obj.time_in)
 		totalseconds = delta.total_seconds()
 		hours = totalseconds/3600
-		if hours > 20:
-			obj.duration = 20
+		if hours > 9:
+			obj.duration = 0
 		elif hours < 0:
 			new_hours = hours+24
 			obj.duration = new_hours 
