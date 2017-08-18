@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Used for generating tables/filters
-    'django_tables2',
+  
     'django_filters',
     'crispy_forms',
     'bootstrap3',
