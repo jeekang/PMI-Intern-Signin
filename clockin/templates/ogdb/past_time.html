@@ -133,6 +133,7 @@ http://www.tooplate.com/view/2082-pure-mix
         <th>Date</th>
         <th>Time In</th>
         <th>Time Out</th>
+        <th>Duration (Hours)</th>
 
 
       </tr>
@@ -147,6 +148,11 @@ http://www.tooplate.com/view/2082-pure-mix
           <td>{{ user1.date}}</td>
           <td>{{ user1.time_in}}</td>
           <td>{{ user1.time_out}}</td>
+          <td>
+
+            {{user1.duration}}
+
+          </td>
 
         </tr>
       {% empty %}
