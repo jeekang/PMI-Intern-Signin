@@ -44,6 +44,8 @@ div.container {
     height:1px;
     display:inline-block;
 }
+
+
 </style>
 <head>
 <!--
@@ -137,12 +139,21 @@ http://www.tooplate.com/view/2082-pure-mix
   Thank You For The Hard Work!
   </h3>
     <div>
-
+    </br>
 
 {% block content %}
 
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
+        {% for field in form %}
+    <input type="text"
+    size="25"
+      class="form-control" 
+      name="{{ field.label }}" 
+      id="{{ field.name }}"
+      placeholder = "What work did you do today? (For payroll purposes)"
+     required />
+{% endfor %}
+</br>
         <button type="submit" class="save btn btn-default">Clock Out</button>
         <a href="{% url 'home' %}" class='btn btn-default'>Return to Work</a>
 

@@ -28,6 +28,7 @@ class Work(models.Model):
 	time_in = models.TimeField(_("Time In"),default= datetime.datetime.now().time(), blank=True)
 	time_out = models.TimeField(_("Time Out"),default= datetime.datetime.now().time(), blank=True)
 	active_session = models.BooleanField(_("Active Session"),default = True)
+	summary = models.CharField(_("Summary"), max_length = 5000, default = "N/A")
 	duration = models.DecimalField(_("Duration"), max_digits = 10, decimal_places = 2, default = 0)
 
 
