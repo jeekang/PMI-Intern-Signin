@@ -1,7 +1,7 @@
 
 {% load static %}
 
-
+{% load widget_tweaks %}
 <!DOCTYPE html>
 <html lang="en">
 <style>
@@ -142,17 +142,14 @@ http://www.tooplate.com/view/2082-pure-mix
     </br>
 
 {% block content %}
-
+    <h4> Please provide a summary of work completed this session </h4>
     <form method="POST" class="post-form">{% csrf_token %}
-        {% for field in form %}
-    <input type="text"
-    size="25"
-      class="form-control" 
-      name="{{ field.label }}" 
-      id="{{ field.name }}"
-      placeholder = "What work did you do today? (For payroll purposes)"
-     required />
-{% endfor %}
+    </br>
+
+    {% render_field form.summary ROWS=5 COLS=100 class="form-control" placeholder="What work did you do today? (For payroll purposes)" %}
+
+    </br>
+
 </br>
         <button type="submit" class="save btn btn-default">Clock Out</button>
         <a href="{% url 'home' %}" class='btn btn-default'>Return to Work</a>
