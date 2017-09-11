@@ -1,6 +1,7 @@
 # PMI-Intern-Sign-In
 
 ## Template Names Need to Be Changed
+# Reminder: When changing template file names, you must change the name in urls.py and views.py as well. 
 
 person_list.html = list of active work sessions, seen by interns
 
