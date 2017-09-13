@@ -1,8 +1,12 @@
 from django.conf.urls import url
+from django.views.generic.base import RedirectView
 from .models import Work
 from . import views
 
+favicon_view = RedirectView.as_view(url='/static/favicon.ico', permanent=True)
+
 urlpatterns = [
+		url(r'^favicon\.ico$', favicon_view),
     url(r'^$', views.work_list, name='index'),
     #url(r'^(?P<work_id>[0-9]+)/$', views.detail, name='detail'),
     url(r'^home/$', views.work_list, name= 'home'),
