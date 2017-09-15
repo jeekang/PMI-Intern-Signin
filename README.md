@@ -1,27 +1,5 @@
 # PMI-Intern-Sign-In
 
-## Template Names Need to Be Changed
-# Reminder: When changing template file names, you must change the name in urls.py and views.py as well. 
-
-person_list.html = list of active work sessions, seen by interns
-
-past_time.html = doesnt need changing, past log hours
-
-new_person.html = new work session
-
-item_edit.html = clock out of current work session, end work session
-
-datefilter.html = Admin view with name and date range filter of all intern work sessions
-
-edit_hours.html = doesnt need changing, editing hours. 
-
-person_confirm_delete.html = delete work session/hours from log.
-
-new_record.html = add new work session (forgot to clock in or something) Admin use. 
-
-
-Should probably also change the folder from "ogdb" to timesheet or clockin or something. 
-
 ## Synopsis
 
 Internship signin web app developed using Django for Paradyme Management's 2017 summer internship program. 
