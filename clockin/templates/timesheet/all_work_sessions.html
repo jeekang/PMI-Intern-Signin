@@ -162,7 +162,7 @@ http://www.tooplate.com/view/2082-pure-mix
         <th>Time In</th>
         <th>Time Out</th>
         <th>Duration (Hours)</th>
-        <th>Work Done</th>
+        <th style="word-wrap: break-word; max-width:10px">Work Done</th>
         
         
       </tr>
@@ -185,7 +185,7 @@ value= {{user.id}}   />
             {{user.duration}}
 
           </td>
-          <td> {{ user.summary }} </input></td>
+          <td style="max-width:150px; word-wrap: break-word;"> {{ user.summary }} </input></td>
         </tr>
       {% empty %}
         <tr>
