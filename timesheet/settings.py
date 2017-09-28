@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
     'clockin.apps.ClockinConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Used for generating tables/filters
-  
+    'dal',
+    'dal_select2',
     'django_filters',
     'crispy_forms',
     'bootstrap3',

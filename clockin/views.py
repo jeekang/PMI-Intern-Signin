@@ -15,6 +15,11 @@ import datetime
 from .filters import WorkListFilter
 from .forms import WorkListFormHelper
 from django.contrib.auth import logout
+from dal import autocomplete
+from django.db.models import Q
+from django.views.generic.edit import UpdateView
+from .filters import *
+
 
 def logout_page(request):
     logout(request)
@@ -189,6 +194,7 @@ class workDelete(DeleteView):
 	success_url = reverse_lazy('adminhome')
 	template_name = 'timesheet/delete_work_session.html'
 
+
 @login_required
 #Clock in function
 def add_work(request):
@@ -215,6 +221,20 @@ def add_work(request):
 
 	return render(request, 'timesheet/admin_add_work_session.html', context)
 
+
+#added by me to experiment
+#@login_required
+class InternAutocomplete(autocomplete.Select2QuerySetView):
+	def get_queryset(self):
+		qs = Intern.objects.order_by('FName').distinct()
+		if self.q:
+		#qs = qs.filter(FName__exact='Sam')
+			qs = qs.filter(FName__istartswith=self.q)
+		return qs
+
+		#return render(autocomplete.Select2QuerySetView, 'timesheet/all_work_sessions.html', context)
+
+#experiment until here
 
 #not in current use. will be used as a Constituent Details Page
 #@login_required
