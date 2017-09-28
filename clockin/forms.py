@@ -5,6 +5,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit
 from crispy_forms.bootstrap import InlineField, FormActions, StrictButton
 from django.forms import extras
+from dal import autocomplete
 
 class WorkForm(forms.ModelForm):
 
@@ -49,5 +50,15 @@ class ClockinForm(forms.ModelForm):
         model = Work
         fields = ()
 
+#added by me to experiemnt
+#class InternForm(forms.ModelForm):
+#    birth_country = forms.ModelChoiceField(
+#        queryset=Intern.objects.all(),
+#        widget=autocomplete.ModelSelect2(url='intern-autocomplete')
+#    )
+#experiment ends here
+#    class Meta:
+ #       model = Person
+  #      fields = ('__all__')
 
 
